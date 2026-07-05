@@ -1,11 +1,12 @@
-import { Schema, model, Document, Types } from "mongoose";
+import { Schema, model, Types } from "mongoose";
+import { IProduct } from "./Product";
 
 export interface ICartItem {
-  product: Types.ObjectId;
+  product: Types.ObjectId | IProduct;
   quantity: number;
 }
 
-export interface ICart extends Document {
+export interface ICart {
   items: ICartItem[];
 }
 
@@ -18,12 +19,11 @@ const cartSchema = new Schema<ICart>(
           ref: "Product",
           required: true,
         },
-
         quantity: {
           type: Number,
           required: true,
-          default: 1,
           min: 1,
+          default: 1,
         },
       },
     ],

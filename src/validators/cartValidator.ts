@@ -1,11 +1,43 @@
 import Joi from "joi";
 
-export const addToCartSchema = Joi.object({
-  productId: Joi.string().hex().length(24).required(),
+const objectId = Joi.string()
+  .hex()
+  .length(24)
+  .required()
+  .messages({
+    "string.base": "Invalid id",
+    "string.hex": "Invalid MongoDB ObjectId",
+    "string.length": "Invalid MongoDB ObjectId",
+    "any.required": "Id is required",
+  });
 
-  quantity: Joi.number().integer().min(1).default(1),
-});
+const addToCartSchema = {
+  body: Joi.object({
+    productId: objectId,
+    quantity: Joi.number().integer().min(1).default(1),
+  }),
+};
 
-export const updateCartSchema = Joi.object({
-  quantity: Joi.number().integer().min(1).required(),
-});
+const updateCartSchema = {
+  params: Joi.object({
+    productId: objectId,
+  }),
+
+  body: Joi.object({
+    action: Joi.string()
+      .valid("increment", "decrement")
+      .required(),
+  }),
+};
+
+const removeCartItemSchema = {
+  params: Joi.object({
+    productId: objectId,
+  }),
+};
+
+export {
+  addToCartSchema,
+  updateCartSchema,
+  removeCartItemSchema,
+};
