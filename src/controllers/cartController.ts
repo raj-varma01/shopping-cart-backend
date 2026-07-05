@@ -17,7 +17,7 @@ const addItem = asyncHandler(async (req: Request, res: Response) => {
 );
 
 const updateQuantity = asyncHandler(async (req: Request, res: Response) => {
-    const cart = await cartService.updateQuantity(req.params.productId as string, req.body.quantity);
+    const cart = await cartService.updateQuantity(req.params.productId as string, req.body.action);
     res.json(new CustomResponse("Quantity updated", cart));
 }
 );
