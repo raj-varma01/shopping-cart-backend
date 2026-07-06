@@ -248,3 +248,50 @@ The project includes centralized error handling for:
 All API responses are returned in JSON format.
 
 ---
+
+## Example Database Collection
+
+**Cart Model**
+{
+  "_id": {
+    "$oid": "6a49f04ce7d0163b52062395"
+  },
+  "items": [
+    {
+      "product": {
+        "$oid": "6a49f04ce7d0163b52062392"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "6a4a48a086729fd52dbfc982"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2026-07-05T05:49:00.041Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-05T12:05:52.852Z"
+  },
+  "__v": 37
+}
+
+**Product Model**
+
+{
+  "_id": {
+    "$oid": "6a49f04ce7d0163b52062391"
+  },
+  "name": "Samsung Galaxy S25",
+  "image": "https://placehold.co/300x300?text=Samsung",
+  "price": 99999,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-07-05T05:49:00.030Z"
+  },
+  "updatedAt": {
+    "$date": "2026-07-05T05:49:00.030Z"
+  }
+}
+
+---
